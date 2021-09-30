@@ -10,7 +10,6 @@ import {
 
 
 export const votersReducer  = (voters = [], action) => {
-
     switch (action.type) {
       case REFRESH_VOTERS_DONE_ACTION:
         return action.voters;
@@ -32,11 +31,9 @@ export const editVoterIdReducer = (editVoterId = -1, action) => {
   if (action.type === EDIT_VOTER_ACTION){
     return action.voterId;
   }
-
   if ([REFRESH_VOTERS_DONE_ACTION, CANCEL_VOTER_ACTION].includes(action.type)){
     return -1;
   }
-
   return editVoterId;
 };
 

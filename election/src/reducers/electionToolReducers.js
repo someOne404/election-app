@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 import { 
   REFRESH_ELECTIONS_DONE_ACTION,
   VIEW_ELECTION_ACTION,
@@ -15,19 +13,11 @@ export const electionsReducer  = (elections = [], action) => {
 };
 
 export const viewElectionIdReducer = (viewElectionId = -1, action) => {
-
   if (action.type === VIEW_ELECTION_ACTION) {
     return action.electionId;
   }
-
   if (REFRESH_ELECTIONS_DONE_ACTION) {
     return -1;
   }
-
   return viewElectionId;
 };
-
-export const electionToolReducer = combineReducers({
-  elections: electionsReducer,
-  viewElectionId: viewElectionIdReducer,
-});
