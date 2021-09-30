@@ -7,6 +7,7 @@ import { voterToolStore } from "./stores/voterToolStore";
 
 import { HelloWorldTool } from "./components/HelloWorldTool";
 import { VoterTool } from "./components/VoterTool";
+import { VotingTool } from "./components/VotingTool";
 
 import logo from './images/intuit-jaguar.png';
 
@@ -30,12 +31,14 @@ export function App() {
         <Switch>
           <Route path="/" exact><h2>Home</h2></Route>
           <Route path="/workflow1">
-            <Provider store={voterToolStore}>
-              <VoterTool />
-            </Provider>
+          <Provider store={voterToolStore}>
+            <VoterTool />
+          </Provider> 
           </Route>
           <Route path="/workflow2">
-            <HelloWorldTool />
+          <Provider store={voterToolStore}>
+            <VotingTool />
+            </Provider> 
           </Route>
           <Route path="/workflow3">
             <HelloWorldTool />
