@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 
 import {useForm} from '../hooks/useForm';
-import { QuestionList } from './QuestionList';
+import { QuestionTable } from './QuestionTable';
 
 export const ElectionForm = ({buttonText, onSubmitElection}) => {
   const [ 

@@ -1,4 +1,5 @@
-import { electionsPropType } from '../prop-types/elections';
+import PropTypes from 'prop-types';
+import { electionPropType } from '../prop-types/elections';
 
 import { ToolHeader } from './ToolHeader';
 import { ElectionTable } from './ElectionTable';
@@ -6,7 +7,8 @@ import { ElectionForm } from './ElectionForm';
 import { ToolFooter } from './ToolFooter';
 
 export const ElectionTool = ({
-  elections, viewElectionId, 
+  elections,
+  viewElectionId, 
   onViewElection: setElectionId,
   onAddElection: addElection, 
 }) => {
@@ -15,11 +17,10 @@ export const ElectionTool = ({
     <>
       <ToolHeader headerText="Election Tool" />
       <ElectionTable elections={elections} viewElectionId={viewElectionId} onViewElection={setElectionId}/>
-      <ElectionForm buttonText="Add Election" onSubmitElection={addElection} />
+      {/* <ElectionForm buttonText="Add Election" onSubmitElection={addElection} /> */}
       <ToolFooter companyName="A Cool Company, Inc." />
     </>
   );
-
 
 };
 
@@ -28,5 +29,5 @@ ElectionTool.defaultProps = {
 };
 
 ElectionTool.propTypes = {
-  elections: electionsPropType.isRequired,
+  elections: PropTypes.arrayOf(electionPropType.isRequired),
 };

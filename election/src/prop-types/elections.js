@@ -6,7 +6,7 @@ export const questionPropType = PropTypes.shape({
   yesCount: PropTypes.number.isRequired,
 });
 
-export const electionsPropType = PropTypes.shape({
+export const electionPropType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   questions: PropTypes.arrayOf(questionPropType).isRequired,

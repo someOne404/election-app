@@ -4,9 +4,11 @@ import { Switch, Route, Link } from "react-router-dom";
 import './App.css';
 
 import { voterToolStore } from "./stores/voterToolStore";
+import { electionToolStore } from "./stores/electionToolStore";
 
 import { HelloWorldTool } from "./components/HelloWorldTool";
 import { VoterTool } from "./components/VoterTool";
+import { ElectionToolContainer } from "./containers/ElectionToolContainer";
 
 
 export function App() {
@@ -35,7 +37,9 @@ export function App() {
             <HelloWorldTool />
           </Route>
           <Route path="/workflow3">
-            <HelloWorldTool />
+            <Provider store={electionToolStore}>
+              <ElectionToolContainer />
+            </Provider>
           </Route>
         </Switch>
       </main>
