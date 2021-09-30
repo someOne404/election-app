@@ -10,7 +10,6 @@ export const ElectionTable = ({
 }) => {
 
   const election = elections.filter(election => election.id === viewElectionId)[0];
-  console.log(elections);
 
   return (
     <>
@@ -23,7 +22,7 @@ export const ElectionTable = ({
           </tr>
         </thead>
         <tbody>
-          {elections.map(election =><tr>
+          {elections.map(election =><tr key={election.id}>
             <td>{election.id}</td>
             <td>{election.name}</td>
             <td>

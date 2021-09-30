@@ -5,7 +5,7 @@ import { useMemo, useEffect } from 'react';
 import {
   refreshElections,
   createViewElectionAction,
-  // appendElection,
+  appendElection,
 } from "../actions/electionToolActions";
 import { ElectionTool } from '../components/ElectionTool';
 
@@ -19,7 +19,7 @@ export const ElectionToolContainer = () => {
   const actions = useMemo(() => bindActionCreators({
     onRefreshElections: refreshElections,
     onViewElection: createViewElectionAction,
-    // onAddElection: appendElection,
+    onSubmitElection: appendElection,
   }, dispatch), [dispatch]);
 
   useEffect(() => dispatch(refreshElections()), [dispatch]);
