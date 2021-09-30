@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-
 import { 
   CANCEL_VOTER_ACTION,
   EDIT_VOTER_ACTION,
@@ -64,9 +63,9 @@ export const votersSortReducer = (votersSort = { col: 'id', dir: 'asc' }, action
 };
 
 export const voterToolReducer = combineReducers({
-    voters: votersReducer,
-    votersSort: votersSortReducer,
-    showForm: showFormReducer,
-    editVoterId: editVoterIdReducer,
-    errorMessage: errorMessageReducer,
-});
+  voters: votersReducer,
+  votersSort: votersSortReducer,
+  showForm: showFormReducer,
+  editVoterId: editVoterIdReducer,
+  errorMessage: errorMessageReducer,
+}); 
