@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import { Switch, Route, Link } from "react-router-dom";
 
-function App() {
+import './App.css';
+import { HelloWorldTool } from "./components/HelloWorldTool";
+
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header className="page-header">
+        <h1>Election App</h1>
       </header>
+      <nav id="menubar">
+        <ul>
+          <li className="menuitem"><Link to="/">Home</Link></li>
+          <li className="menuitem"><Link to="/workflow1">Workflow 1</Link></li>
+          <li className="menuitem"><Link to="/workflow2">Workflow 2</Link></li>
+          <li className="menuitem"><Link to="/workflow3">Workflow 3</Link></li>
+        </ul>
+      </nav>
+      <main id="content">
+        <Switch>
+          <Route path="/" exact><h2>Home</h2></Route>
+          <Route path="/workflow1">
+            <HelloWorldTool />
+          </Route>
+          <Route path="/workflow2">
+            <HelloWorldTool />
+          </Route>
+          <Route path="/workflow3">
+            <HelloWorldTool />
+          </Route>
+        </Switch>
+      </main>
+      <aside id="sidebar">
+        Sidebar
+      </aside>
+      <footer id="page-footer">
+        <small>Footer</small>
+      </footer>
     </div>
   );
 }
-
 export default App;
