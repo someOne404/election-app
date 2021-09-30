@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types';
-
+import { VoterForm } from "./VoterForm";
 
 const dataCols = [
     { name: 'id', caption: 'Id' },
@@ -32,8 +32,11 @@ const sortHeaderColWrapper = (sortVoters, sortArrow) => ({ col: { name, caption}
 
 export const VoterTable = ({
     voters,
+    showForm,
     votersSort: {col, dir},
     onSortVoters: sortVoters,
+    appendVoter: onSubmitVoter,
+    toggleForm,
 }) => {
 
     const sortArrow = sortArrowWrapper(col, dir);
@@ -44,7 +47,8 @@ export const VoterTable = ({
 
     return (
         <>
-        <button type="button">Register Voter</button>
+        <button type="button" onClick={toggleForm}>Register Voter</button>
+        {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
         <table>
             <thead>
                 <tr>

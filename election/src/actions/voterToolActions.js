@@ -5,6 +5,7 @@ export const CREATE_VOTER_REQUEST_ACTION = 'CREATE_VOTERS_REQUEST';
 export const CREATE_VOTER_REQUEST_DONE = 'CREATE_VOTERS_DONE';
 export const REMOVE_VOTER_REQUEST_ACTION = 'REMOVE_VOTERS_REQUEST';
 export const REMOVE_VOTER_REQUEST_DONE = 'REMOVE_VOTERS_DONE';
+export const TOGGLE_FORM_ACTION = 'TOGGLE_FORM';
 
 
 export const createAppendVoterRequestAction = ( newVoter ) => ({ type: CREATE_VOTER_REQUEST_ACTION, newVoter });
@@ -14,6 +15,7 @@ export const createRemoveVoterDoneAction = ( ) => ({ type: REMOVE_VOTER_REQUEST_
 export const createRefreshVotersRequestAction = () => ({ type: REFRESH_VOTERS_REQUEST_ACTION });
 export const createRefreshVotersDoneAction = ( voters ) => ({ type: REFRESH_VOTERS_DONE_ACTION, voters });
 export const createSortVotersAction = (col) => ({ type: SORT_VOTERS_ACTION, col });
+export const createToggleFormAction = () => ({ type: TOGGLE_FORM_ACTION });
 
 
 export const appendVoter = (newVoter) => {
@@ -27,7 +29,7 @@ export const appendVoter = (newVoter) => {
 
       const appendedVoter = await res.json();
       dispatch(createAppendVoterDoneAction(newVoter));
-      dispatch(refreshVoters);
+      dispatch(refreshVoters());
   }
 };
 
@@ -39,7 +41,7 @@ export const removeVoter = (voterId) => {
       });
 
       dispatch(createRemoveVoterDoneAction());
-      dispatch(refreshVoters);
+      dispatch(refreshVoters());
   }
 };
 

@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { 
     REFRESH_VOTERS_DONE_ACTION,
     SORT_VOTERS_ACTION,
+    TOGGLE_FORM_ACTION,
 } from "../actions/voterToolActions";
 
 
@@ -14,6 +15,15 @@ export const votersReducer  = (voters = [], action) => {
       default:
         return voters;
     }
+};
+
+export const showFormReducer  = (showForm = false, action) => {
+  switch (action.type) {
+    case TOGGLE_FORM_ACTION:
+      return !showForm;
+    default:
+      return showForm;
+  };
 };
 
 export const votersSortReducer = (votersSort = { col: 'id', dir: 'asc' }, action) => {
@@ -31,4 +41,5 @@ export const votersSortReducer = (votersSort = { col: 'id', dir: 'asc' }, action
 export const voterToolReducer = combineReducers({
     voters: votersReducer,
     votersSort: votersReducer,
+    showForm: showFormReducer,
 });
