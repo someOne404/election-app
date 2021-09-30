@@ -1,20 +1,87 @@
 {
   "voters": [
-    { "id": 1, "firstName": "Bob", "lastName": "Jones", "address": "123 Main St.", "city": "Mountain View", "birthdate": "06/12/1999", "email": "bjones@gmail.com", "phone": "123-456-7890" },
-    { "id": 2, "firstName": "Jim", "lastName": "Smith", "address": "456 Main St.", "city": "Walnut Creek", "birthdate": "01/02/1990", "email": "jsmith@gmail.com", "phone": "234-567-8901" },
-    { "id": 3, "firstName": "Tim", "lastName": "Thomas", "address": "678 Main St.", "city": "Berkeley", "birthdate": "02/13/1992", "email": "tthomas@gmail.com", "phone": "345-678-9012" }
+    {
+      "id": 1,
+      "firstName": "Bob",
+      "lastName": "Jones",
+      "address": "123 Main St.",
+      "city": "Mountain View",
+      "birthdate": "06/12/1999",
+      "email": "bjones@gmail.com",
+      "phone": "123-456-7890"
+    },
+    {
+      "id": 2,
+      "firstName": "Jim",
+      "lastName": "Smith",
+      "address": "456 Main St.",
+      "city": "Walnut Creek",
+      "birthdate": "01/02/1990",
+      "email": "jsmith@gmail.com",
+      "phone": "234-567-8901"
+    },
+    {
+      "id": 3,
+      "firstName": "Tim",
+      "lastName": "Thomas",
+      "address": "678 Main St.",
+      "city": "Berkeley",
+      "birthdate": "02/13/1992",
+      "email": "tthomas@gmail.com",
+      "phone": "345-678-9012"
+    },
+    {
+      "firstName": "Matt",
+      "lastName": "Wong",
+      "address": "test",
+      "city": "San Diego",
+      "birthdate": "11/15/1995",
+      "email": "mwong678@gmail.com",
+      "phone": "1231231234",
+      "id": 4
+    },
+    {
+      "firstName": "John ",
+      "lastName": "Smith",
+      "address": "321 Main st",
+      "city": "San Diego",
+      "birthdate": "12/3/1990",
+      "email": "jsmith@yahoo.com",
+      "phone": "1231212312",
+      "id": 5
+    }
   ],
   "elections": [
     {
       "id": 1,
       "name": "Election 1",
       "questions": [
-        { "id": 1, "question": "Is your favorite color blue?", "yesCount": 1 },
-        { "id": 2, "question": "Is your favorite coding language Java?", "yesCount": 2 },
-        { "id": 3, "question": "Do you prefer Paris over Vegas", "yesCount": 3 },
-        { "id": 4, "question": "Will we ever able to teleport?", "yesCount": 0 }
+        {
+          "id": 1,
+          "question": "Is your favorite color blue?",
+          "yesCount": 1
+        },
+        {
+          "id": 2,
+          "question": "Is your favorite coding language Java?",
+          "yesCount": 2
+        },
+        {
+          "id": 3,
+          "question": "Do you prefer Paris over Vegas",
+          "yesCount": 3
+        },
+        {
+          "id": 4,
+          "question": "Will we ever able to teleport?",
+          "yesCount": 0
+        }
       ],
-      "voterIds": [ 1, 2, 3 ]
+      "voterIds": [
+        1,
+        2,
+        3
+      ]
     }
   ]
 }
