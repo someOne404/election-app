@@ -5,8 +5,8 @@ import './App.css';
 
 import { voterToolStore } from "./stores/voterToolStore";
 
-import { HelloWorldTool } from "./components/HelloWorldTool";
 import { VoterTool } from "./components/VoterTool";
+import { ElectionToolContainer } from "./containers/ElectionToolContainer";
 import { VotingTool } from "./components/VotingTool";
 
 
@@ -38,7 +38,9 @@ export function App() {
             </Provider> 
           </Route>
           <Route path="/workflow3">
-            <HelloWorldTool />
+            <Provider store={voterToolStore}>
+              <ElectionToolContainer />
+            </Provider>
           </Route>
         </Switch>
       </main>

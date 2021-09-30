@@ -2,10 +2,15 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import {  votersReducer, votersSortReducer, showFormReducer, 
-          editVoterIdReducer,
-        errorMessageReducer, } from '../reducers/voterToolReducers';
-import { electionsReducer } from "../reducers/votingToolReducer";
+import {
+  votersReducer,
+  votersSortReducer,
+  showFormReducer, 
+  editVoterIdReducer,
+  errorMessageReducer,
+} from '../reducers/voterToolReducers';
+
+import { electionsReducer, viewElectionIdReducer } from "../reducers/electionToolReducers";
 
 let composeEnhancers = composeWithDevTools({
   name: 'Voter Tool'
@@ -24,8 +29,8 @@ export const voterToolStore = createStore(
     showForm: showFormReducer,
     editVoterId: editVoterIdReducer,
     errorMessage: errorMessageReducer,
-
     elections: electionsReducer,
+    viewElectionId: viewElectionIdReducer,
   }),
   middleware,
 );
