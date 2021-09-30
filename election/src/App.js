@@ -8,12 +8,15 @@ import { voterToolStore } from "./stores/voterToolStore";
 import { HelloWorldTool } from "./components/HelloWorldTool";
 import { VoterTool } from "./components/VoterTool";
 
+import logo from './images/intuit-jaguar.png';
+
 
 export function App() {
   return (
     <div className="container">
-      <header className="page-header">
+      <header id="page-header">
         <h1>Election App</h1>
+        <div><img id="logo" src={logo}></img></div>
       </header>
       <nav id="menubar">
         <ul>
