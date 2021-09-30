@@ -112,6 +112,8 @@ export const refreshVoters = () => {
 
 export const removeSelectedVoters = (voterIds) => {
 
+    console.log('voterIds = '+voterIds);
+
     return dispatch => {
   
         dispatch(createRemoveSelectedVotersRequestAction(voterIds));
@@ -121,10 +123,10 @@ export const removeSelectedVoters = (voterIds) => {
             {
                 method: 'DELETE',
             });
+            dispatch(createRemoveSelectedVotersDoneAction());
+            dispatch(refreshVoters());
         });
-  
-        dispatch(createRemoveSelectedVotersDoneAction());
-        dispatch(refreshVoters());
+        
     };
   
 };
