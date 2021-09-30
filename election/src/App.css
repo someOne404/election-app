@@ -21,12 +21,14 @@
   grid-area: page-header;
   background-color: navy;
   padding: 10px;
+  display: flex;
 }
 
 #page-header > h1 {
   color: white;
   font-size: 3rem;
   font-weight: bold;
+  width: 95%;
 }
 
 #menubar {
@@ -76,4 +78,10 @@
   text-align: center;
   font-size: 0.9rem;
   padding-top: 12px;
+}
+
+#logo {
+  width: 32px;
+  height: 32px;
+  float: right;
 }

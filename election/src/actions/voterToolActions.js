@@ -112,8 +112,6 @@ export const refreshVoters = () => {
 
 export const removeSelectedVoters = (voterIds) => {
 
-    console.log('voterIds = '+voterIds);
-
     return dispatch => {
         dispatch(createRemoveSelectedVotersRequestAction(voterIds));
         voterIds.map((id) => {
