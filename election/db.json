@@ -32,13 +32,23 @@
     },
     {
       "id": 4,
-      "firstName": "Kim",
-      "lastName": "White",
-      "address": "556 Main St.",
-      "city": "Oakland",
-      "birthdate": "02/13/1995",
-      "email": "white@gmail.com",
-      "phone": "888-678-9012"
+      "firstName": "Matt",
+      "lastName": "Wong",
+      "address": "test",
+      "city": "San Diego",
+      "birthdate": "11/15/1995",
+      "email": "mwong678@gmail.com",
+      "phone": "1231231234"
+    },
+    {
+      "id": 5,
+      "firstName": "John ",
+      "lastName": "Smith",
+      "address": "321 Main st",
+      "city": "San Diego",
+      "birthdate": "12/3/1990",
+      "email": "jsmith@yahoo.com",
+      "phone": "1231212312"
     }
   ],
   "elections": [

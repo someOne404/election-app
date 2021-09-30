@@ -4,18 +4,20 @@ import { Switch, Route, Link } from "react-router-dom";
 import './App.css';
 
 import { voterToolStore } from "./stores/voterToolStore";
-import { electionToolStore } from "./stores/electionToolStore";
 
-import { HelloWorldTool } from "./components/HelloWorldTool";
 import { VoterTool } from "./components/VoterTool";
 import { ElectionToolContainer } from "./containers/ElectionToolContainer";
+import { VotingTool } from "./components/VotingTool";
+
+import logo from './images/intuit-jaguar.png';
 
 
 export function App() {
   return (
     <div className="container">
-      <header className="page-header">
+      <header id="page-header">
         <h1>Election App</h1>
+        <div><img id="logo" src={logo}></img></div>
       </header>
       <nav id="menubar">
         <ul>
@@ -29,15 +31,17 @@ export function App() {
         <Switch>
           <Route path="/" exact><h2>Home</h2></Route>
           <Route path="/workflow1">
-            <Provider store={voterToolStore}>
-              <VoterTool />
-            </Provider>
+          <Provider store={voterToolStore}>
+            <VoterTool />
+          </Provider> 
           </Route>
           <Route path="/workflow2">
-            <HelloWorldTool />
+          <Provider store={voterToolStore}>
+            <VotingTool />
+            </Provider> 
           </Route>
           <Route path="/workflow3">
-            <Provider store={electionToolStore}>
+            <Provider store={voterToolStore}>
               <ElectionToolContainer />
             </Provider>
           </Route>

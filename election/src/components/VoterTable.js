@@ -1,5 +1,7 @@
-// import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
+import { VoterForm } from "./VoterForm";
+import { VoterViewRow } from "./VoterViewRow";
+import { VoterEditRow } from "./VoterEditRow";
 
 const dataCols = [
     { name: 'id', caption: 'Id' },
@@ -32,8 +34,18 @@ const sortHeaderColWrapper = (sortVoters, sortArrow) => ({ col: { name, caption}
 
 export const VoterTable = ({
     voters,
+    showForm,
+    editVoterId,
+    errorMessage,
     votersSort: {col, dir},
     onSortVoters: sortVoters,
+    onDeleteVoter: deleteVoter,
+    appendVoter: onSubmitVoter,
+    onEditVoter,
+    onCancelVoter,
+    onSaveVoter,
+    toggleForm,
+    deleteSelectedVoters,
 }) => {
 
     const sortArrow = sortArrowWrapper(col, dir);
@@ -42,34 +54,54 @@ export const VoterTable = ({
 
     const SortHeaderCol = sortHeaderColWrapper(sortVoters, sortArrowWrapper(col, dir));
 
+    const votersToDelete = () => {
+        const checkboxes = document.querySelectorAll('input[name="delete-voter"]:checked');
+        let selectedVoterIds = [];
+        checkboxes.forEach((checkbox) => {
+            selectedVoterIds.push(checkbox.value);
+        })
+        return selectedVoterIds;
+    };
+
     return (
+        <>
+        {errorMessage && <span>{errorMessage}</span>}
+        <button type="button" onClick={toggleForm}>Register Voter</button>
+        {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
         <table>
-            <thead>
+            <thead key='voter-thead'>
                 <tr>
-                    {dataCols.map(dataCol => <SortHeaderCol key={dataCol.id} col={dataCol} />)}
+                    <th key='batch-delete-button'><button type="button" onClick={() => deleteSelectedVoters(votersToDelete())}>Delete Selected</button></th>
+                    {dataCols.map(dataCol => <SortHeaderCol key={dataCol.name} col={dataCol} />)}
+                    <th key="button-actions">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {voters.map((voter) =>
-                    <tr>
-                        <td>{voter.id}</td>
-                        <td>{voter.firstName}</td>
-                        <td>{voter.lastName}</td>
-                        <td>{voter.address}</td>
-                        <td>{voter.city}</td>
-                        <td>{voter.birthdate}</td>
-                        <td>{voter.email}</td>
-                        <td>{voter.phone}</td>
-                    </tr>
-                )};
+                voter.id === editVoterId 
+                ? <VoterEditRow key={voter.id} voter={voter}
+                    onSaveVoter={onSaveVoter} onCancelVoter={onCancelVoter} />
+                : <VoterViewRow key={voter.id} voter={voter} 
+                onDeleteVoter={deleteVoter} onEditVoter={onEditVoter} />)}
             </tbody>
         </table>
+        </>
     );
 
 };
 
 VoterTable.defaultProps = {
     voter: [],
+    votersSort: {
+        col: 'id',
+        dir: 'asc',
+    },
 }
 
-// TODO: ADD PROPTYPES
+VoterTable.propTypes = {
+    votersSort: PropTypes.shape({
+        col: PropTypes.oneOf(['id', 'firstName', 'lastName', 'address', 'city', 'birthdate', 'email', 'phone']).isRequired,
+        dir: PropTypes.oneOf(['asc','desc']).isRequired,
+    }).isRequired,
+    onDeleteVoter: PropTypes.func.isRequired,
+}

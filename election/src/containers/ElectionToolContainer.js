@@ -7,7 +7,7 @@ import {
   createViewElectionAction,
   appendElection,
   createAppendQuestionAction,
-  createSetErrorMessageAction,
+  createSetErrorMsgAction,
 } from "../actions/electionToolActions";
 import { ElectionTool } from '../components/ElectionTool';
 
@@ -25,7 +25,7 @@ export const ElectionToolContainer = () => {
     onViewElection: createViewElectionAction,
     onSubmitElection: appendElection,
     onAppendQuestion: createAppendQuestionAction,
-    onSetErrorMsg: createSetErrorMessageAction,
+    onSetErrorMsg: createSetErrorMsgAction,
   }, dispatch), [dispatch]);
 
   useEffect(() => dispatch(refreshElections()), [dispatch]);

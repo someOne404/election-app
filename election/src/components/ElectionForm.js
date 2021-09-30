@@ -29,10 +29,6 @@ export const ElectionForm = ({
   };
 
   const addQuestion = (questionText) => {
-    // setForm({
-    //   ...electionForm,
-    //   questions: [...questions, {question: questionText, id: questions.length + 1, yesCount: 0}],
-    // });
     appendQuestion({question: questionText, id: questions.length + 1, yesCount: 0});
   };
 
