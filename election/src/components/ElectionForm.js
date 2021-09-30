@@ -13,13 +13,16 @@ export const ElectionForm = ({buttonText, onSubmitElection}) => {
   ] = useForm({
     name: '', 
     questions: [],
+    errorMsg: '',
   });
 
   const submitElection = () => {
-
-    onSubmitElection({ ...electionForm });
-
-    resetElectionForm();
+    if (electionForm.name && electionForm.questions.length > 0) {
+      onSubmitElection({ ...electionForm });
+      resetElectionForm();
+    } else {
+      setForm({...electionForm, errorMsg: 'Please enter election name and questions'});
+    }
   };
 
   const addQuestion = (questionText) => {
@@ -31,20 +34,23 @@ export const ElectionForm = ({buttonText, onSubmitElection}) => {
   };
 
   return (
-    <form>
-      <label>
-        Election Name:
-        <input type="text" name="name" value={electionForm.name} onChange={change}/>
-      </label>
-      <div>
-        Questions:
-        <ol>
-          {electionForm.questions.map(q => <li key={q.id}>{q.question}</li>)}
-        </ol>
-      </div>
-      <QuestionForm onSubmitQuestion={addQuestion}/>
-      <button type="button" onClick={submitElection}>{buttonText}</button>
-    </form>
+    <>
+      <form>
+        <label>
+          Election Name:
+          <input type="text" name="name" value={electionForm.name} onChange={change} />
+        </label>
+        <div>
+          Questions:
+          <ol>
+            {electionForm.questions.map(q => <li key={q.id}>{q.question}</li>)}
+          </ol>
+        </div>
+        <QuestionForm onSubmitQuestion={addQuestion}/>
+        <button type="button" onClick={submitElection}>{buttonText}</button>
+      </form>
+      {electionForm.errorMsg && <div>Error: {electionForm.errorMsg}</div>}
+    </>
   );
 };
 

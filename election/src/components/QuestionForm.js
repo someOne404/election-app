@@ -8,15 +8,19 @@ export const QuestionForm = ({onSubmitQuestion}) => {
     questionForm,
     change,
     resetQuestionForm,
+    setForm,
   ] = useForm({
     question: '',
+    errorMsg: '',
   });
 
   const addQuestion = () => {
-
-    onSubmitQuestion(questionForm.question);
-
-    resetQuestionForm();
+    if (questionForm.question) {
+      onSubmitQuestion(questionForm.question);
+      resetQuestionForm();
+    } else {
+      setForm({...questionForm, errorMsg: 'Please enter text into the question field'});
+    }
   };
 
   return (
@@ -32,6 +36,7 @@ export const QuestionForm = ({onSubmitQuestion}) => {
         />
       </label>
       <button type="button" onClick={addQuestion}>Add Question</button>
+      {questionForm.errorMsg && <div>Error: {questionForm.errorMsg}</div>}
     </>
   );
 };
