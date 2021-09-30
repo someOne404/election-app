@@ -17,7 +17,7 @@ export const QuestionTable = ({
           </tr>
         </thead>
         <tbody>
-          {election.questions.map(({ id, question, yesCount }) =><tr>
+          {election.questions.map(({ id, question, yesCount }) =><tr key={id}>
             <td>{id}</td>
             <td>{question}</td>
             <td>{yesCount}</td>

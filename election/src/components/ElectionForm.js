@@ -4,33 +4,36 @@ import PropTypes from 'prop-types';
 import {useForm} from '../hooks/useForm';
 import {QuestionForm} from './QuestionForm';
 
-export const ElectionForm = ({buttonText, onSubmitElection}) => {
+export const ElectionForm = ({
+  buttonText, questions, errorMsg,
+  onSubmitElection,
+  onAppendQuestion: appendQuestion,
+  onSetErrorMsg: setErrorMsg,
+}) => {
   const [ 
     electionForm, // state data 
     change,
     resetElectionForm,
-    setForm,
   ] = useForm({
-    name: '', 
-    questions: [],
-    errorMsg: '',
+    name: '',
+    question: '',
   });
 
   const submitElection = () => {
-    if (electionForm.name && electionForm.questions.length > 0) {
-      onSubmitElection({ ...electionForm });
+    if (electionForm.name) {
+      onSubmitElection({ ...electionForm, questions, voterIds: []});
       resetElectionForm();
     } else {
-      setForm({...electionForm, errorMsg: 'Please enter election name and questions'});
+      setErrorMsg('Please enter election name');
     }
   };
 
   const addQuestion = (questionText) => {
-    const {questions} = electionForm; 
-    setForm({
-      ...electionForm,
-      questions: [...questions, {question: questionText, id: questions.length + 1, yesCount: 0}],
-    });
+    // setForm({
+    //   ...electionForm,
+    //   questions: [...questions, {question: questionText, id: questions.length + 1, yesCount: 0}],
+    // });
+    appendQuestion({question: questionText, id: questions.length + 1, yesCount: 0});
   };
 
   return (
@@ -43,13 +46,27 @@ export const ElectionForm = ({buttonText, onSubmitElection}) => {
         <div>
           Questions:
           <ol>
-            {electionForm.questions.map(q => <li key={q.id}>{q.question}</li>)}
+            {questions.map(q => <li key={q.id}>{q.question}</li>)}
           </ol>
         </div>
         <QuestionForm onSubmitQuestion={addQuestion}/>
+
+
+        {/* <label>
+          Question
+          <input
+            type="text"
+            id="question-text-input"
+            value={electionForm.question}
+            onChange={change}
+            name="question"
+          />
+        </label>
+        <button type="button" onClick={addQuestion}>Add Question</button> */}
+
         <button type="button" onClick={submitElection}>{buttonText}</button>
       </form>
-      {electionForm.errorMsg && <div>Error: {electionForm.errorMsg}</div>}
+      {errorMsg && <div>Error: {errorMsg}</div>}
     </>
   );
 };

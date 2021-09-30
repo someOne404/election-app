@@ -6,6 +6,8 @@ import {
   refreshElections,
   createViewElectionAction,
   appendElection,
+  createAppendQuestionAction,
+  createSetErrorMessageAction,
 } from "../actions/electionToolActions";
 import { ElectionTool } from '../components/ElectionTool';
 
@@ -13,6 +15,8 @@ export const ElectionToolContainer = () => {
 
   const elections = useSelector(state => state.elections);
   const viewElectionId = useSelector(s => s.viewElectionId);
+  const questions = useSelector(s => s.questions);
+  const errorMsg = useSelector(s => s.errorMsg);
 
   const dispatch = useDispatch();
 
@@ -20,9 +24,13 @@ export const ElectionToolContainer = () => {
     onRefreshElections: refreshElections,
     onViewElection: createViewElectionAction,
     onSubmitElection: appendElection,
+    onAppendQuestion: createAppendQuestionAction,
+    onSetErrorMsg: createSetErrorMessageAction,
   }, dispatch), [dispatch]);
 
   useEffect(() => dispatch(refreshElections()), [dispatch]);
 
-  return <ElectionTool elections={elections} viewElectionId={viewElectionId} {...actions} />;
+  return <ElectionTool elections={elections} viewElectionId={viewElectionId} 
+    questions={questions} errorMsg={errorMsg}
+    {...actions} />;
 };

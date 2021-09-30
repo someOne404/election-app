@@ -4,13 +4,18 @@ export const APPEND_ELECTION_REQUEST_ACTION = 'APPEND_CAR_REQUEST';
 export const APPEND_ELECTION_DONE_ACTION = 'APPEND_CAR_DONE';
 
 export const VIEW_ELECTION_ACTION = 'VIEW_ELECTION_ACTION';
+export const APPEND_QUESTION_ACTION = 'APPEND_QUESTION_ACTION';
+
+export const SET_ERROR_MESSAGE_ACTION = 'SET_ERROR_MESSAGE_ACTION';
 
 export const createRefreshElectionsRequestAction = () => ({ type: REFRESH_ELECTIONS_REQUEST_ACTION });
 export const createRefreshElectionsDoneAction = ( elections ) => ({ type: REFRESH_ELECTIONS_DONE_ACTION, elections });
-export const createAppendElectionRequestAction = newElection => ({ type: APPEND_ELECTION_REQUEST_ACTION, car: newElection });
-export const createAppendElectionDoneAction = appendedElection => ({ type: APPEND_ELECTION_DONE_ACTION, car: appendedElection });
+export const createAppendElectionRequestAction = newElection => ({ type: APPEND_ELECTION_REQUEST_ACTION, election: newElection });
+export const createAppendElectionDoneAction = appendedElection => ({ type: APPEND_ELECTION_DONE_ACTION, election: appendedElection });
 
 export const createViewElectionAction = (electionId) => ({type: VIEW_ELECTION_ACTION, electionId});
+export const createAppendQuestionAction = (question) => ({type: APPEND_QUESTION_ACTION, question});
+export const createSetErrorMessageAction = (errorMsg) => ({type: SET_ERROR_MESSAGE_ACTION, errorMsg});
 
 export const refreshElections = () => {
   return dispatch => {
