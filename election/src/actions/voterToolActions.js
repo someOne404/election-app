@@ -112,19 +112,15 @@ export const refreshVoters = () => {
 
 export const removeSelectedVoters = (voterIds) => {
 
-    return dispatch => {
-  
-        dispatch(createRemoveSelectedVotersRequestAction(voterIds));
+    console.log('voterIds = '+voterIds);
 
+    return dispatch => {
+        dispatch(createRemoveSelectedVotersRequestAction(voterIds));
         voterIds.map((id) => {
-            fetch(`http://localhost:3060/voters/${encodeURIComponent(id)}`, 
-            {
-                method: 'DELETE',
-            });
+            dispatch(removeVoter(id));
         });
-  
         dispatch(createRemoveSelectedVotersDoneAction());
-        dispatch(refreshVoters());
+        dispatch(refreshVoters());       
     };
   
 };
