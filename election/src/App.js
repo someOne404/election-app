@@ -2,7 +2,12 @@ import { Provider } from "react-redux";
 import { Switch, Route, Link } from "react-router-dom";
 
 import './App.css';
+
+import { voterToolStore } from "./stores/voterToolStore";
+
 import { HelloWorldTool } from "./components/HelloWorldTool";
+import { VoterTool } from "./components/VoterTool";
+
 
 export function App() {
   return (
@@ -22,7 +27,9 @@ export function App() {
         <Switch>
           <Route path="/" exact><h2>Home</h2></Route>
           <Route path="/workflow1">
-            <HelloWorldTool />
+            <Provider store={voterToolStore}>
+              <VoterTool />
+            </Provider>
           </Route>
           <Route path="/workflow2">
             <HelloWorldTool />
