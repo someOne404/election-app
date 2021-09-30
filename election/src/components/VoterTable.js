@@ -43,6 +43,8 @@ export const VoterTable = ({
     const SortHeaderCol = sortHeaderColWrapper(sortVoters, sortArrowWrapper(col, dir));
 
     return (
+        <>
+        <button type="button">Register Voter</button>
         <table>
             <thead>
                 <tr>
@@ -64,6 +66,7 @@ export const VoterTable = ({
                 )};
             </tbody>
         </table>
+        </>
     );
 
 };

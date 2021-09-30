@@ -8,6 +8,8 @@ import { sortedItemsSelector } from "../selectors/sortedItemsSelector";
 
 import { 
     refreshVoters,
+    appendVoter,
+    removeVoter,
     createSortVotersAction,
 } from "../actions/voterToolActions";
 
@@ -22,6 +24,8 @@ export const VoterTableContainer = () => {
 
     const actions = useMemo(() => bindActionCreators({
         onSortVoters: createSortVotersAction,
+        appendVoter: appendVoter,
+        removeVoter: removeVoter,
     }, dispatch), [dispatch]);
 
     useEffect(() => dispatch(refreshVoters()), [dispatch]);  
