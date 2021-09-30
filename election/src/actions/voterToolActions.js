@@ -3,8 +3,8 @@ export const REFRESH_VOTERS_DONE_ACTION = 'REFRESH_VOTERS_DONE';
 export const SORT_VOTERS_ACTION = 'SORT_VOTERS';
 export const CREATE_VOTER_REQUEST_ACTION = 'CREATE_VOTERS_REQUEST';
 export const CREATE_VOTER_REQUEST_DONE = 'CREATE_VOTERS_DONE';
-export const REMOVE_VOTER_REQUEST_ACTION = 'REMOVE_VOTERS_REQUEST';
-export const REMOVE_VOTER_REQUEST_DONE = 'REMOVE_VOTERS_DONE';
+export const REMOVE_VOTER_REQUEST_ACTION = 'REMOVE_VOTER_REQUEST';
+export const REMOVE_VOTER_DONE_ACTION = 'REMOVE_VOTER_DONE';
 export const TOGGLE_FORM_ACTION = 'TOGGLE_FORM';
 export const EDIT_VOTER_ACTION = 'EDIT_VOTER';
 export const CANCEL_VOTER_ACTION = 'CANCEL_VOTER';
@@ -16,7 +16,7 @@ export const SET_ERROR_MESSAGE_ACTION = 'SET_ERROR_MESSAGE_ACTION';
 export const createAppendVoterRequestAction = ( newVoter ) => ({ type: CREATE_VOTER_REQUEST_ACTION, newVoter });
 export const createAppendVoterDoneAction = ( addedVoter ) => ({ type: CREATE_VOTER_REQUEST_DONE, addedVoter });
 export const createRemoveVoterRequestAction = ( voterId ) => ({ type: REMOVE_VOTER_REQUEST_ACTION, voterId });
-export const createRemoveVoterDoneAction = ( ) => ({ type: REMOVE_VOTER_REQUEST_DONE });
+export const createRemoveVoterDoneAction = ( ) => ({ type: REMOVE_VOTER_DONE_ACTION });
 export const createRefreshVotersRequestAction = () => ({ type: REFRESH_VOTERS_REQUEST_ACTION });
 export const createRefreshVotersDoneAction = ( voters ) => ({ type: REFRESH_VOTERS_DONE_ACTION, voters });
 export const createSortVotersAction = (col) => ({ type: SORT_VOTERS_ACTION, col });
@@ -55,15 +55,20 @@ export const appendVoter = (newVoter) => {
 };
 
 export const removeVoter = (voterId) => {
+
   return async dispatch => {
+
       dispatch(createRemoveVoterRequestAction(voterId));
-      const res = await fetch(`http://localhost:3060/voters/${encodeURIComponent(voterId)}`, {
-        method: 'DELETE',
+
+      await fetch(`http://localhost:3060/voters/${encodeURIComponent(voterId)}`, 
+        {
+            method: 'DELETE',
       });
 
       dispatch(createRemoveVoterDoneAction());
       dispatch(refreshVoters());
   }
+
 };
 
 export const replaceVoter = (newVoter) => {

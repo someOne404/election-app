@@ -65,7 +65,7 @@ export const votersSortReducer = (votersSort = { col: 'id', dir: 'asc' }, action
 
 export const voterToolReducer = combineReducers({
     voters: votersReducer,
-    votersSort: votersReducer,
+    votersSort: votersSortReducer,
     showForm: showFormReducer,
     editVoterId: editVoterIdReducer,
     errorMessage: errorMessageReducer,

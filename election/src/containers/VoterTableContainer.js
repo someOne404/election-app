@@ -32,7 +32,7 @@ export const VoterTableContainer = () => {
     const actions = useMemo(() => bindActionCreators({
         onSortVoters: createSortVotersAction,
         appendVoter: appendVoter,
-        removeVoter: removeVoter,
+        onDeleteVoter: removeVoter,
         toggleForm: createToggleFormAction,
         onCancelVoter: createCancelVoterAction,
         onEditVoter: createEditVoterAction,
