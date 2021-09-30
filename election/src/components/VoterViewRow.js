@@ -1,4 +1,8 @@
-export const VoterViewRow = ({ voter, onEditVoter: editVoter, onMarkDelete: markDelete}) => {
+import PropTypes from 'prop-types';
+
+import { voterPropType } from '../prop-types/voters';
+
+export const VoterViewRow = ({ voter, onEditVoter: editVoter, onDeleteVoter: deleteVoter}) => {
 
     return (
     <tr>
@@ -11,7 +15,14 @@ export const VoterViewRow = ({ voter, onEditVoter: editVoter, onMarkDelete: mark
         <td>{voter.email}</td>
         <td>{voter.phone}</td>
         <button type="button" onClick={() => editVoter(voter.id)}>Edit</button>
-        <button type="button" onClick={() => markDelete(voter.id)}>Delete</button>
+        <button type="button" onClick={() => deleteVoter(voter.id)}>Delete</button>
     </tr>
     );
+};
+
+
+VoterViewRow.propTypes = {
+    voter: voterPropType.isRequired,
+    onDeleteVoter: PropTypes.func.isRequired,
+    onEditVoter: PropTypes.func.isRequired,
 };

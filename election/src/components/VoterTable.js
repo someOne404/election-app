@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { VoterForm } from "./VoterForm";
 import { VoterViewRow } from "./VoterViewRow";
 import { VoterEditRow } from "./VoterEditRow";
@@ -38,6 +38,7 @@ export const VoterTable = ({
     editVoterId,
     votersSort: {col, dir},
     onSortVoters: sortVoters,
+    onDeleteVoter: deleteVoter,
     appendVoter: onSubmitVoter,
     onEditVoter,
     onCancelVoter,
@@ -66,7 +67,7 @@ export const VoterTable = ({
                 ? <VoterEditRow key={voter.id} voter={voter}
                     onSaveVoter={() => {}} onCancelVoter={onCancelVoter} />
                 : <VoterViewRow key={voter.id} voter={voter} 
-                onMarkDelete={()=>{}} onEditVoter={onEditVoter} />)};
+                onDeleteVoter={deleteVoter} onEditVoter={onEditVoter} />)};
             </tbody>
         </table>
         </>
@@ -76,6 +77,16 @@ export const VoterTable = ({
 
 VoterTable.defaultProps = {
     voter: [],
+    votersSort: {
+        col: 'id',
+        dir: 'asc',
+    },
 }
 
-// TODO: ADD PROPTYPES
+VoterTable.propTypes = {
+    votersSort: PropTypes.shape({
+        col: PropTypes.oneOf(['id', 'firstName', 'lastName', 'address', 'city', 'birthdate', 'email', 'phone']).isRequired,
+        dir: PropTypes.oneOf(['asc','desc']).isRequired,
+    }).isRequired,
+    onDeleteVoter: PropTypes.func.isRequired,
+}
