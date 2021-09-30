@@ -13,6 +13,7 @@ export const ElectionForm = ({buttonText, onSubmitElection}) => {
   ] = useForm({
     name: '', 
     questions: [],
+    voterIds: [],
     errorMsg: '',
   });
 
