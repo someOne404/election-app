@@ -12,6 +12,8 @@ import {
     removeVoter,
     createSortVotersAction,
     createToggleFormAction,
+    createEditVoterAction,
+    createCancelVoterAction,
 } from "../actions/voterToolActions";
 
 const sortedVotersSelector = sortedItemsSelector("voters", "votersSort");
@@ -21,6 +23,7 @@ export const VoterTableContainer = () => {
     const voters = useSelector(sortedVotersSelector);
     const votersSort = useSelector(s => s.votersSort);
     const showForm = useSelector(s => s.showForm);
+    const editVoterId = useSelector(s => s.editVoterId);
 
     const dispatch = useDispatch();
 
@@ -29,10 +32,13 @@ export const VoterTableContainer = () => {
         appendVoter: appendVoter,
         removeVoter: removeVoter,
         toggleForm: createToggleFormAction,
+        onCancelVoter: createCancelVoterAction,
+        onEditVoter: createEditVoterAction,
     }, dispatch), [dispatch]);
 
     useEffect(() => dispatch(refreshVoters()), [dispatch]);  
 
-    return <VoterTable voters={voters} votersSort={votersSort} showForm={showForm} {...actions} />;
+    return <VoterTable voters={voters} votersSort={votersSort} 
+                       showForm={showForm} editVoterId={editVoterId} {...actions} />;
 }
 

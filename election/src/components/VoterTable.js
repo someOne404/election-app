@@ -1,5 +1,7 @@
 // import PropTypes from 'prop-types';
 import { VoterForm } from "./VoterForm";
+import { VoterViewRow } from "./VoterViewRow";
+import { VoterEditRow } from "./VoterEditRow";
 
 const dataCols = [
     { name: 'id', caption: 'Id' },
@@ -33,9 +35,12 @@ const sortHeaderColWrapper = (sortVoters, sortArrow) => ({ col: { name, caption}
 export const VoterTable = ({
     voters,
     showForm,
+    editVoterId,
     votersSort: {col, dir},
     onSortVoters: sortVoters,
     appendVoter: onSubmitVoter,
+    onEditVoter,
+    onCancelVoter,
     toggleForm,
 }) => {
 
@@ -57,17 +62,11 @@ export const VoterTable = ({
             </thead>
             <tbody>
                 {voters.map((voter) =>
-                    <tr>
-                        <td>{voter.id}</td>
-                        <td>{voter.firstName}</td>
-                        <td>{voter.lastName}</td>
-                        <td>{voter.address}</td>
-                        <td>{voter.city}</td>
-                        <td>{voter.birthdate}</td>
-                        <td>{voter.email}</td>
-                        <td>{voter.phone}</td>
-                    </tr>
-                )};
+                voter.id === editVoterId 
+                ? <VoterEditRow key={voter.id} voter={voter}
+                    onSaveVoter={() => {}} onCancelVoter={onCancelVoter} />
+                : <VoterViewRow key={voter.id} voter={voter} 
+                onMarkDelete={()=>{}} onEditVoter={onEditVoter} />)};
             </tbody>
         </table>
         </>

@@ -6,6 +6,8 @@ export const CREATE_VOTER_REQUEST_DONE = 'CREATE_VOTERS_DONE';
 export const REMOVE_VOTER_REQUEST_ACTION = 'REMOVE_VOTERS_REQUEST';
 export const REMOVE_VOTER_REQUEST_DONE = 'REMOVE_VOTERS_DONE';
 export const TOGGLE_FORM_ACTION = 'TOGGLE_FORM';
+export const EDIT_VOTER_ACTION = 'EDIT_VOTER';
+export const CANCEL_VOTER_ACTION = 'CANCEL_VOTER';
 
 
 export const createAppendVoterRequestAction = ( newVoter ) => ({ type: CREATE_VOTER_REQUEST_ACTION, newVoter });
@@ -16,6 +18,8 @@ export const createRefreshVotersRequestAction = () => ({ type: REFRESH_VOTERS_RE
 export const createRefreshVotersDoneAction = ( voters ) => ({ type: REFRESH_VOTERS_DONE_ACTION, voters });
 export const createSortVotersAction = (col) => ({ type: SORT_VOTERS_ACTION, col });
 export const createToggleFormAction = () => ({ type: TOGGLE_FORM_ACTION });
+export const createEditVoterAction = voterId => ({ type: EDIT_VOTER_ACTION, voterId });
+export const createCancelVoterAction = () => ({ type: CANCEL_VOTER_ACTION });
 
 
 export const appendVoter = (newVoter) => {
