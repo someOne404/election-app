@@ -45,6 +45,7 @@ export const VoterTable = ({
     onCancelVoter,
     onSaveVoter,
     toggleForm,
+    deleteSelectedVoters,
 }) => {
 
     const sortArrow = sortArrowWrapper(col, dir);
@@ -53,15 +54,26 @@ export const VoterTable = ({
 
     const SortHeaderCol = sortHeaderColWrapper(sortVoters, sortArrowWrapper(col, dir));
 
+    const votersToDelete = () => {
+        const checkboxes = document.querySelectorAll('input[name="delete-voter"]:checked');
+        let selectedVoterIds = [];
+        checkboxes.forEach((checkbox) => {
+            selectedVoterIds.push(checkbox.value);
+        })
+        return selectedVoterIds;
+    };
+
     return (
         <>
         {errorMessage && <span>{errorMessage}</span>}
         <button type="button" onClick={toggleForm}>Register Voter</button>
         {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
         <table>
-            <thead>
+            <thead key='voter-thead'>
                 <tr>
-                    {dataCols.map(dataCol => <SortHeaderCol key={dataCol.id} col={dataCol} />)}
+                    <th key='batch-delete-button'><button type="button" onClick={() => deleteSelectedVoters(votersToDelete())}>Delete Selected</button></th>
+                    {dataCols.map(dataCol => <SortHeaderCol key={dataCol.name} col={dataCol} />)}
+                    <th key="button-actions">Actions</th>
                 </tr>
             </thead>
             <tbody>

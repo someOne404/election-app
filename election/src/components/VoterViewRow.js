@@ -6,6 +6,7 @@ export const VoterViewRow = ({ voter, onEditVoter: editVoter, onDeleteVoter: del
 
     return (
     <tr>
+        <td><input type="checkbox" value={voter.id} name="delete-voter"/></td>
         <td>{voter.id}</td>
         <td>{voter.firstName}</td>
         <td>{voter.lastName}</td>
@@ -15,8 +16,8 @@ export const VoterViewRow = ({ voter, onEditVoter: editVoter, onDeleteVoter: del
         <td>{voter.email}</td>
         <td>{voter.phone}</td>
         <td>
-        <button type="button" onClick={() => editVoter(voter.id)}>Edit</button>
-        <button type="button" onClick={() => deleteVoter(voter.id)}>Delete</button>
+            <button type="button" onClick={() => editVoter(voter.id)}>Edit</button>
+            <button type="button" onClick={() => deleteVoter(voter.id)}>Delete</button>
         </td>
     </tr>
     );

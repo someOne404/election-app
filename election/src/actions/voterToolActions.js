@@ -11,6 +11,8 @@ export const CANCEL_VOTER_ACTION = 'CANCEL_VOTER';
 export const REPLACE_VOTER_REQUEST_ACTION = 'REPLACE_VOTER_REQUEST';
 export const REPLACE_VOTER_DONE_ACTION = 'REPLACE_VOTER_DONE';
 export const SET_ERROR_MESSAGE_ACTION = 'SET_ERROR_MESSAGE_ACTION';
+export const REMOVE_SELECTED_VOTERS_REQUEST_ACTION = 'REMOVE_SELECTED_VOTERS_REQUEST';
+export const REMOVE_SELECTED_VOTERS_DONE_ACTION = 'REMOVE_SELECTED_VOTERS_DONE';
 
 
 export const createAppendVoterRequestAction = ( newVoter ) => ({ type: CREATE_VOTER_REQUEST_ACTION, newVoter });
@@ -26,6 +28,8 @@ export const createCancelVoterAction = () => ({ type: CANCEL_VOTER_ACTION });
 export const createReplaceVoterRequestAction = voterId => ({ type: REPLACE_VOTER_REQUEST_ACTION, voterId });
 export const createReplaceVoterDoneAction = () => ({ type: REPLACE_VOTER_DONE_ACTION });
 export const createSetErrorMessageAction = (errorMessage) => ({ type: SET_ERROR_MESSAGE_ACTION, errorMessage });
+export const createRemoveSelectedVotersRequestAction = ( voterIds ) => ({ type: REMOVE_SELECTED_VOTERS_REQUEST_ACTION, voterIds });
+export const createRemoveSelectedVotersDoneAction = ( ) => ({ type: REMOVE_SELECTED_VOTERS_DONE_ACTION });
 
 const isFormFilled = (newVoter) => {
   let isFilled = true;
@@ -46,7 +50,7 @@ export const appendVoter = (newVoter) => {
         });
   
         const appendedVoter = await res.json();
-        dispatch(createAppendVoterDoneAction(newVoter));
+        dispatch(createAppendVoterDoneAction(appendedVoter));
         dispatch(refreshVoters());
       } else {
         dispatch(createSetErrorMessageAction("Please fill out all fields."));
@@ -63,7 +67,7 @@ export const removeVoter = (voterId) => {
       await fetch(`http://localhost:3060/voters/${encodeURIComponent(voterId)}`, 
         {
             method: 'DELETE',
-      });
+        });
 
       dispatch(createRemoveVoterDoneAction());
       dispatch(refreshVoters());
@@ -104,4 +108,23 @@ export const refreshVoters = () => {
       .then(res => res.json())
       .then(voters => dispatch(createRefreshVotersDoneAction( voters )));
   };
+};
+
+export const removeSelectedVoters = (voterIds) => {
+
+    return dispatch => {
+  
+        dispatch(createRemoveSelectedVotersRequestAction(voterIds));
+
+        voterIds.map((id) => {
+            fetch(`http://localhost:3060/voters/${encodeURIComponent(id)}`, 
+            {
+                method: 'DELETE',
+            });
+        });
+  
+        dispatch(createRemoveSelectedVotersDoneAction());
+        dispatch(refreshVoters());
+    };
+  
 };

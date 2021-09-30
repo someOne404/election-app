@@ -15,6 +15,7 @@ import {
     createToggleFormAction,
     createEditVoterAction,
     createCancelVoterAction,
+    removeSelectedVoters
 } from "../actions/voterToolActions";
 
 const sortedVotersSelector = sortedItemsSelector("voters", "votersSort");
@@ -37,6 +38,7 @@ export const VoterTableContainer = () => {
         onCancelVoter: createCancelVoterAction,
         onEditVoter: createEditVoterAction,
         onSaveVoter: replaceVoter,
+        deleteSelectedVoters: removeSelectedVoters,
     }, dispatch), [dispatch]);
 
     useEffect(() => dispatch(refreshVoters()), [dispatch]);  
