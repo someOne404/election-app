@@ -1,0 +1,17 @@
+{
+  "voters": [
+    { "id": 1, "firstName": "Bob", "lastName": "Jones", "address": "123 Main St.", "city": "Mountain View", "birthdate": "06/12/1999", "email": "bjones@gmail.com", "phone": "867-5309" }
+  ],
+  "questions": [
+    { "id": 1, "prompt": "Is your favorite color blue?" }
+  ],
+  "votes": [
+    { "id": 1, "questionId": 1, "voterId": 1, "answer": "yes" }
+  ],
+  "ballots": [
+    { "id": 1, "votes": [] }
+  ],
+  "elections": [
+    { "id": 1, "ballots": [] }
+  ]
+}
