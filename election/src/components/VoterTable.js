@@ -70,7 +70,7 @@ export const VoterTable = ({
                 ? <VoterEditRow key={voter.id} voter={voter}
                     onSaveVoter={onSaveVoter} onCancelVoter={onCancelVoter} />
                 : <VoterViewRow key={voter.id} voter={voter} 
-                onDeleteVoter={deleteVoter} onEditVoter={onEditVoter} />)};
+                onDeleteVoter={deleteVoter} onEditVoter={onEditVoter} />)}
             </tbody>
         </table>
         </>
