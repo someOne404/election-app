@@ -20,6 +20,10 @@ export const ElectionForm = ({
 
   const submitElection = () => {
     if (electionForm.name) {
+      if (questions.length === 0) {
+        setErrorMsg('Please enter at least one question');
+        return;
+      } 
       onSubmitElection({ ...electionForm, questions, voterIds: []});
       resetElectionForm();
     } else {

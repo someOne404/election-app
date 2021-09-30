@@ -17,7 +17,7 @@ export const QuestionForm = ({onSubmitQuestion, onSetErrorMsg: setErrorMsg}) => 
       onSubmitQuestion(questionForm.question);
       resetQuestionForm();
     } else {
-      setErrorMsg('Please enter question');
+      setErrorMsg('Please enter question text');
     }
   };
 
