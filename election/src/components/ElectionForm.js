@@ -16,7 +16,6 @@ export const ElectionForm = ({
     resetElectionForm,
   ] = useForm({
     name: '',
-    question: '',
   });
 
   const submitElection = () => {
@@ -45,22 +44,9 @@ export const ElectionForm = ({
             {questions.map(q => <li key={q.id}>{q.question}</li>)}
           </ol>
         </div>
-        <QuestionForm onSubmitQuestion={addQuestion}/>
-
-
-        {/* <label>
-          Question
-          <input
-            type="text"
-            id="question-text-input"
-            value={electionForm.question}
-            onChange={change}
-            name="question"
-          />
-        </label>
-        <button type="button" onClick={addQuestion}>Add Question</button> */}
-
-        <button type="button" onClick={submitElection}>{buttonText}</button>
+        <QuestionForm onSubmitQuestion={addQuestion} onSetErrorMsg={setErrorMsg}/>
+        <div><button type="button" onClick={submitElection}>{buttonText}</button></div>
+        
       </form>
       {errorMsg && <div>Error: {errorMsg}</div>}
     </>

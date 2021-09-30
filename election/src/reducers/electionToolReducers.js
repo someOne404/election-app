@@ -30,6 +30,11 @@ export const questionsReducer = (questions = [], action) => {
   if (action.type === APPEND_QUESTION_ACTION) {
     return [...questions, action.question];
   }
+
+  if (action.type === REFRESH_ELECTIONS_DONE_ACTION) {
+    return [];
+  }
+
   return questions;
 };
 
