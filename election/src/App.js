@@ -44,9 +44,6 @@ export function App() {
           </Route>
         </Switch>
       </main>
-      <aside id="sidebar">
-        Sidebar
-      </aside>
       <footer id="page-footer">
         <small>Footer</small>
       </footer>

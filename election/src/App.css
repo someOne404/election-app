@@ -11,7 +11,7 @@
   grid-template-areas: 
     "page-header page-header"
     "menu menu"
-    "content sidebar"
+    "content content"
     "page-footer page-footer";
 
     font-family: 'Roboto', sans-serif;
@@ -54,17 +54,12 @@
   font-weight: bold;
 }
 
-#content, #sidebar {
+#content {
   padding: 10px;
 }
 
 #content {
   grid-area: content;
-}
-
-#sidebar {
-  grid-area: sidebar;
-  background-color: lightsalmon;
 }
 
 #page-footer {
