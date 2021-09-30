@@ -95,7 +95,7 @@ export const VoterForm = ({onSubmitVoter}) => {
           />
         </div>
         <button type="button" onClick={submitVoter}>
-          Submit Voter
+          Complete Registration
         </button>
       </form>); 
 
