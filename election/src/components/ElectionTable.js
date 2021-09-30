@@ -6,7 +6,7 @@ import { QuestionTable } from './QuestionTable';
 export const ElectionTable = ({
   elections,
   viewElectionId,
-  // onViewElection: setElectionId,
+  onViewElection: setElectionId,
 }) => {
 
   const election = elections.filter(election => election.id === viewElectionId)[0];
@@ -26,7 +26,11 @@ export const ElectionTable = ({
           {elections.map(election =><tr>
             <td>{election.id}</td>
             <td>{election.name}</td>
-            {/* <td><button type="button" onClick={() => setElectionId(election.id)}>View Results</button></td> */}
+            <td>
+              <button type="button" onClick={() => setElectionId(election.id)}>
+                View Results
+              </button>
+            </td>
           </tr>)}
         </tbody>
       </table>
