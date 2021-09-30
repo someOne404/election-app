@@ -6,6 +6,7 @@ import {
     REFRESH_VOTERS_DONE_ACTION,
     SORT_VOTERS_ACTION,
     TOGGLE_FORM_ACTION,
+    SET_ERROR_MESSAGE_ACTION,
 } from "../actions/voterToolActions";
 
 
@@ -29,7 +30,6 @@ export const showFormReducer  = (showForm = false, action) => {
 };
 
 export const editVoterIdReducer = (editVoterId = -1, action) => {
-  console.log(action.voterId);
   if (action.type === EDIT_VOTER_ACTION){
     return action.voterId;
   }
@@ -39,7 +39,17 @@ export const editVoterIdReducer = (editVoterId = -1, action) => {
   }
 
   return editVoterId;
-}
+};
+
+export const errorMessageReducer = (errorMessage = "", action) => {
+
+  if (action.type === SET_ERROR_MESSAGE_ACTION) {
+    return action.errorMessage;
+  }
+
+  return "";
+
+};
 
 export const votersSortReducer = (votersSort = { col: 'id', dir: 'asc' }, action) => {
     if (action.type === SORT_VOTERS_ACTION) {
@@ -58,4 +68,5 @@ export const voterToolReducer = combineReducers({
     votersSort: votersReducer,
     showForm: showFormReducer,
     editVoterId: editVoterIdReducer,
+    errorMessage: errorMessageReducer,
 });

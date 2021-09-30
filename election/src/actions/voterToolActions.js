@@ -8,6 +8,9 @@ export const REMOVE_VOTER_REQUEST_DONE = 'REMOVE_VOTERS_DONE';
 export const TOGGLE_FORM_ACTION = 'TOGGLE_FORM';
 export const EDIT_VOTER_ACTION = 'EDIT_VOTER';
 export const CANCEL_VOTER_ACTION = 'CANCEL_VOTER';
+export const REPLACE_VOTER_REQUEST_ACTION = 'REPLACE_VOTER_REQUEST';
+export const REPLACE_VOTER_DONE_ACTION = 'REPLACE_VOTER_DONE';
+export const SET_ERROR_MESSAGE_ACTION = 'SET_ERROR_MESSAGE_ACTION';
 
 
 export const createAppendVoterRequestAction = ( newVoter ) => ({ type: CREATE_VOTER_REQUEST_ACTION, newVoter });
@@ -20,20 +23,34 @@ export const createSortVotersAction = (col) => ({ type: SORT_VOTERS_ACTION, col 
 export const createToggleFormAction = () => ({ type: TOGGLE_FORM_ACTION });
 export const createEditVoterAction = voterId => ({ type: EDIT_VOTER_ACTION, voterId });
 export const createCancelVoterAction = () => ({ type: CANCEL_VOTER_ACTION });
+export const createReplaceVoterRequestAction = voterId => ({ type: REPLACE_VOTER_REQUEST_ACTION, voterId });
+export const createReplaceVoterDoneAction = () => ({ type: REPLACE_VOTER_DONE_ACTION });
+export const createSetErrorMessageAction = (errorMessage) => ({ type: SET_ERROR_MESSAGE_ACTION, errorMessage });
 
+const isFormFilled = (newVoter) => {
+  let isFilled = true;
+  Object.values(newVoter).forEach((value) => {
+    if (value.length === 0) isFilled = false
+  });
+  return isFilled;
+}; 
 
 export const appendVoter = (newVoter) => {
   return async dispatch => {
-      dispatch(createAppendVoterRequestAction(newVoter));
-      const res = await fetch('http://localhost:3060/voters', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newVoter),
-      });
-
-      const appendedVoter = await res.json();
-      dispatch(createAppendVoterDoneAction(newVoter));
-      dispatch(refreshVoters());
+      if (isFormFilled(newVoter)) {
+        dispatch(createAppendVoterRequestAction(newVoter));
+        const res = await fetch('http://localhost:3060/voters', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newVoter),
+        });
+  
+        const appendedVoter = await res.json();
+        dispatch(createAppendVoterDoneAction(newVoter));
+        dispatch(refreshVoters());
+      } else {
+        dispatch(createSetErrorMessageAction("Please fill out all fields."));
+      }
   }
 };
 
@@ -49,16 +66,37 @@ export const removeVoter = (voterId) => {
   }
 };
 
-export const refreshVoters = () => {
+export const replaceVoter = (newVoter) => {
 
-    // this function being returned is the thunk action
-    return dispatch => {
+  return async dispatch => {
+    if (isFormFilled(newVoter)) {
+      dispatch(createReplaceVoterRequestAction(newVoter.id));
+
+      await fetch('http://localhost:3060/voters/' + encodeURIComponent(newVoter.id),
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newVoter),
+        });
   
-      dispatch(createRefreshVotersRequestAction());
-  
-      return fetch('http://localhost:3060/voters')
-        .then(res => res.json())
-        .then(voters => dispatch(createRefreshVotersDoneAction( voters )));
-    };
+      dispatch(createReplaceVoterDoneAction());
+      dispatch(refreshVoters());
+    } else {
+      dispatch(createSetErrorMessageAction("Please fill out all fields."));
+    }
+  };
+
 };
 
+export const refreshVoters = () => {
+
+  // this function being returned is the thunk action
+  return dispatch => {
+
+    dispatch(createRefreshVotersRequestAction());
+
+    return fetch('http://localhost:3060/voters')
+      .then(res => res.json())
+      .then(voters => dispatch(createRefreshVotersDoneAction( voters )));
+  };
+};

@@ -33,7 +33,7 @@
     {
       "firstName": "Matt",
       "lastName": "Wong",
-      "address": "",
+      "address": "test",
       "city": "San Diego",
       "birthdate": "11/15/1995",
       "email": "mwong678@gmail.com",
@@ -49,6 +49,16 @@
       "email": "jsmith@yahoo.com",
       "phone": "1231212312",
       "id": 5
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "address": "test",
+      "city": "test",
+      "birthdate": "test",
+      "email": "test",
+      "phone": "test",
+      "id": 6
     }
   ],
   "elections": [

@@ -10,8 +10,10 @@ export const VoterViewRow = ({ voter, onEditVoter: editVoter, onMarkDelete: mark
         <td>{voter.birthdate}</td>
         <td>{voter.email}</td>
         <td>{voter.phone}</td>
-        <button type="button" onClick={() => editVoter(voter.id)}>Edit</button>
-        <button type="button" onClick={() => markDelete(voter.id)}>Delete</button>
+        <td>
+            <button type="button" onClick={() => editVoter(voter.id)}>Edit</button>
+            <button type="button" onClick={() => markDelete(voter.id)}>Delete</button>
+        </td>
     </tr>
     );
 };

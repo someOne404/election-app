@@ -10,6 +10,7 @@ import {
     refreshVoters,
     appendVoter,
     removeVoter,
+    replaceVoter,
     createSortVotersAction,
     createToggleFormAction,
     createEditVoterAction,
@@ -24,6 +25,7 @@ export const VoterTableContainer = () => {
     const votersSort = useSelector(s => s.votersSort);
     const showForm = useSelector(s => s.showForm);
     const editVoterId = useSelector(s => s.editVoterId);
+    const errorMessage = useSelector(s => s.errorMessage);
 
     const dispatch = useDispatch();
 
@@ -34,11 +36,12 @@ export const VoterTableContainer = () => {
         toggleForm: createToggleFormAction,
         onCancelVoter: createCancelVoterAction,
         onEditVoter: createEditVoterAction,
+        onSaveVoter: replaceVoter,
     }, dispatch), [dispatch]);
 
     useEffect(() => dispatch(refreshVoters()), [dispatch]);  
 
-    return <VoterTable voters={voters} votersSort={votersSort} 
+    return <VoterTable voters={voters} votersSort={votersSort} errorMessage={errorMessage}
                        showForm={showForm} editVoterId={editVoterId} {...actions} />;
 }
 

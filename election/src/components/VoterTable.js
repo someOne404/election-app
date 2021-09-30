@@ -36,11 +36,13 @@ export const VoterTable = ({
     voters,
     showForm,
     editVoterId,
+    errorMessage,
     votersSort: {col, dir},
     onSortVoters: sortVoters,
     appendVoter: onSubmitVoter,
     onEditVoter,
     onCancelVoter,
+    onSaveVoter,
     toggleForm,
 }) => {
 
@@ -52,6 +54,7 @@ export const VoterTable = ({
 
     return (
         <>
+        {errorMessage && <span>{errorMessage}</span>}
         <button type="button" onClick={toggleForm}>Register Voter</button>
         {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
         <table>
@@ -64,9 +67,9 @@ export const VoterTable = ({
                 {voters.map((voter) =>
                 voter.id === editVoterId 
                 ? <VoterEditRow key={voter.id} voter={voter}
-                    onSaveVoter={() => {}} onCancelVoter={onCancelVoter} />
+                    onSaveVoter={onSaveVoter} onCancelVoter={onCancelVoter} />
                 : <VoterViewRow key={voter.id} voter={voter} 
-                onMarkDelete={()=>{}} onEditVoter={onEditVoter} />)};
+                onMarkDelete={()=>{}} onEditVoter={onEditVoter} />)}
             </tbody>
         </table>
         </>
