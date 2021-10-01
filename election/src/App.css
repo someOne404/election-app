@@ -98,6 +98,10 @@ button {
   background-color: #dfc277;
 }
 
+#content thead {
+  text-align: center;
+}
+
 #content tbody {
   font-size: 14px;
   font-weight: 300;

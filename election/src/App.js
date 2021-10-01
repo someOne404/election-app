@@ -8,7 +8,6 @@ import { voterToolStore } from "./stores/voterToolStore";
 import { VoterTool } from "./components/VoterTool";
 import { ElectionToolContainer } from "./containers/ElectionToolContainer";
 import { VotingTool } from "./components/VotingTool";
-import { TeamTool } from "./components/TeamTool";
 
 import logo from './images/intuit-jaguar.png';
 

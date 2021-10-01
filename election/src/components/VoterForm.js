@@ -23,7 +23,7 @@ export const VoterForm = ({onSubmitVoter}) => {
     };
 
     return (      
-    <form>
+      <form className="mb-3">
         <div>
           <label htmlFor="firstname-input">First Name</label>
           <input
@@ -94,7 +94,7 @@ export const VoterForm = ({onSubmitVoter}) => {
             name="phone"
           />
         </div>
-        <button type="button" onClick={submitVoter}>
+        <button className="mt-3" type="button" onClick={submitVoter}>
           Complete Registration
         </button>
       </form>); 
