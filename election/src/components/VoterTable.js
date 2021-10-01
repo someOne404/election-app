@@ -67,7 +67,7 @@ export const VoterTable = ({
         <button id="register-button" type="button" onClick={toggleForm}>Register Voter</button>
         {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
         <hr />
-        <table className="table">
+        <table className="table mb-5">
             <thead key='voter-thead'>
                 <tr>
                     <th scope="col" key='batch-delete-button'><button type="button" onClick={() => deleteSelectedVoters(votersToDelete())}>Delete Selected</button></th>
