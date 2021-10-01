@@ -23,6 +23,7 @@ export function App() {
       </header>
       <nav id="menubar">
         <ul>
+          <li className="menuitem"><Link to="/">Home</Link></li>
           <li className="menuitem"><Link to="/workflow1">Workflow 1</Link></li>
           <li className="menuitem"><Link to="/workflow2">Workflow 2</Link></li>
           <li className="menuitem"><Link to="/workflow3">Workflow 3</Link></li>
@@ -30,11 +31,6 @@ export function App() {
       </nav>
       <main id="content">
         <Switch>
-          <Route path="/">
-            <Provider store={voterToolStore}>
-              <VoterTool />
-            </Provider> 
-          </Route>
           <Route path="/workflow1">
             <Provider store={voterToolStore}>
               <VoterTool />
