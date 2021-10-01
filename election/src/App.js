@@ -8,15 +8,17 @@ import { voterToolStore } from "./stores/voterToolStore";
 import { VoterTool } from "./components/VoterTool";
 import { ElectionToolContainer } from "./containers/ElectionToolContainer";
 import { VotingTool } from "./components/VotingTool";
+import { TeamTool } from "./components/TeamTool";
 
 import logo from './images/intuit-jaguar.png';
-
 
 export function App() {
   return (
     <div className="container-fluid">
       <header id="page-header">
         <h1>Election App</h1>
+        <div>Team Jaguars</div>
+        <div>Taking a <strong>byte</strong> <br></br>out of the competition!</div>
         <div><img id="logo" src={logo}></img></div>
       </header>
       <nav id="menubar">
@@ -29,15 +31,14 @@ export function App() {
       </nav>
       <main id="content">
         <Switch>
-          <Route path="/" exact><h2>Home</h2></Route>
           <Route path="/workflow1">
-          <Provider store={voterToolStore}>
-            <VoterTool />
-          </Provider> 
+            <Provider store={voterToolStore}>
+              <VoterTool />
+            </Provider> 
           </Route>
           <Route path="/workflow2">
-          <Provider store={voterToolStore}>
-            <VotingTool />
+            <Provider store={voterToolStore}>
+              <VotingTool />
             </Provider> 
           </Route>
           <Route path="/workflow3">
