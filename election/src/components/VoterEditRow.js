@@ -87,8 +87,8 @@ export const VoterEditRow = ({ voter, onSaveVoter, onCancelVoter: cancelVoter })
         />
       </td>
       <td>
-        <button type="button" onClick={saveVoter}>Save</button>
-        <button type="button" onClick={cancelVoter}>Cancel</button>
+        <button type="button" className="mx-1" onClick={saveVoter}>Save</button>
+        <button type="button" className="mx-1" onClick={cancelVoter}>Cancel</button>
       </td>
     </tr>);
 
