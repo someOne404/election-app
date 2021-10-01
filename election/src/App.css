@@ -1,4 +1,4 @@
-.container {
+/* .container {
   position: fixed;
   top: 0; bottom: 0;
   left: 0; right: 0;
@@ -16,7 +16,7 @@
     "page-footer page-footer";
 
     font-family: 'Roboto', sans-serif;
-}
+} */
 
 #page-header {
   grid-area: page-header;
@@ -57,17 +57,12 @@
   font-weight: bold;
 }
 
-#content, #sidebar {
+#content {
   padding: 10px;
 }
 
 #content {
   grid-area: content;
-}
-
-#sidebar {
-  grid-area: sidebar;
-  background-color: lightsalmon;
 }
 
 #page-footer {
@@ -82,8 +77,8 @@
 }
 
 #logo {
-  width: 32px;
-  height: 32px;
+  width: 64px;
+  height: 64px;
   float: right;
 }
 
@@ -101,6 +96,10 @@ button {
   color: white;
   border-radius: 4px;
   background-color: #dfc277;
+}
+
+#content thead {
+  text-align: center;
 }
 
 #content tbody {

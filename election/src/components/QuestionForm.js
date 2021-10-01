@@ -23,9 +23,10 @@ export const QuestionForm = ({onSubmitQuestion, onSetErrorMsg: setErrorMsg}) => 
 
   return (
     <>
-      <label>
-        Question
+      <label >
+        Question:
         <input
+          className="mx-2" 
           type="text"
           id="question-text-input"
           value={questionForm.question}

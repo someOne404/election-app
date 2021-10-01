@@ -13,7 +13,7 @@ export const ElectionTable = ({
 
   return (
     <>
-      <table>
+      <table className="table mb-5">
         <thead>
           <tr>
             <th>Id</th>

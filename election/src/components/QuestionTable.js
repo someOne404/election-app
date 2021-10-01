@@ -8,7 +8,7 @@ export const QuestionTable = ({
   return (
     <>
       <h3>{election.name}</h3>
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Id</th>

@@ -37,22 +37,26 @@ export const ElectionForm = ({
 
   return (
     <>
+    <div className="d-flex justify-content-center align-items-center my-5">
       <form>
+        <h4>New Election</h4>
         <label>
           Election Name:
-          <input type="text" name="name" value={electionForm.name} onChange={change} />
+          <input className="mx-2" type="text" name="name" value={electionForm.name} onChange={change} />
         </label>
         <div>
-          Questions:
+          <label>Questions:</label>
           <ol>
             {questions.map(q => <li key={q.id}>{q.question}</li>)}
           </ol>
         </div>
         <QuestionForm onSubmitQuestion={addQuestion} onSetErrorMsg={setErrorMsg}/>
-        <div><button type="button" onClick={submitElection}>{buttonText}</button></div>
-        
+        <div className="d-flex justify-content-center mt-2">
+          <button type="button" onClick={submitElection}>{buttonText}</button>
+        </div>
+        {errorMsg && <div className="mt-3">Error: {errorMsg}</div>}
       </form>
-      {errorMsg && <div>Error: {errorMsg}</div>}
+    </div>
     </>
   );
 };

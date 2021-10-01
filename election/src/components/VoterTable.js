@@ -66,12 +66,13 @@ export const VoterTable = ({
         {errorMessage && <span>{errorMessage}</span>}
         <button id="register-button" type="button" onClick={toggleForm}>Register Voter</button>
         {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
-        <table>
+        <hr />
+        <table className="table mb-5">
             <thead key='voter-thead'>
                 <tr>
-                    <th key='batch-delete-button'><button type="button" onClick={() => deleteSelectedVoters(votersToDelete())}>Delete Selected</button></th>
+                    <th scope="col" key='batch-delete-button'><button type="button" onClick={() => deleteSelectedVoters(votersToDelete())}>Delete Selected</button></th>
                     {dataCols.map(dataCol => <SortHeaderCol key={dataCol.name} col={dataCol} />)}
-                    <th key="button-actions">Actions</th>
+                    <th scope="col" key="button-actions">Actions</th>
                 </tr>
             </thead>
             <tbody>

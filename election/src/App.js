@@ -8,13 +8,12 @@ import { voterToolStore } from "./stores/voterToolStore";
 import { VoterTool } from "./components/VoterTool";
 import { ElectionToolContainer } from "./containers/ElectionToolContainer";
 import { VotingTool } from "./components/VotingTool";
-import { TeamTool } from "./components/TeamTool";
 
 import logo from './images/intuit-jaguar.png';
 
 export function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <header id="page-header">
         <h1>Election App</h1>
         <div>Team Jaguars</div>
@@ -48,11 +47,8 @@ export function App() {
           </Route>
         </Switch>
       </main>
-      {/* <aside id="sidebar">
-        Sidebar
-      </aside> */}
-      <footer id="page-footer">
-        <small>&copy; Intuit Jaguars, Inc.</small>
+      <footer id="page-footer" className="fixed-bottom">
+        <small>&copy; Intuit Jaguars</small>
       </footer>
     </div>
   );
