@@ -2,6 +2,7 @@
   position: fixed;
   top: 0; bottom: 0;
   left: 0; right: 0;
+  background-color: lightgrey;
 
   display: grid;
 
@@ -19,19 +20,21 @@
 
 #page-header {
   grid-area: page-header;
-  background-color: navy;
+  background-color: white;
   padding: 10px;
+  display: flex;
 }
 
 #page-header > h1 {
-  color: white;
+  color:#dfc277;
   font-size: 3rem;
   font-weight: bold;
+  width: 95%;
 }
 
 #menubar {
   grid-area: menu;
-  background-color: lightgray;
+  background-color:#e2a0b6;
   padding-left: 16px;
 
   display: flex;
@@ -65,10 +68,46 @@
 #page-footer {
   grid-area: page-footer;
 
-  background-color: navy;
+  background-color:#e2a0b6;
   padding: 8px;
   color: white;
   text-align: center;
   font-size: 0.9rem;
   padding-top: 12px;
+}
+
+#logo {
+  width: 32px;
+  height: 32px;
+  float: right;
+}
+
+#content > header > h1 {
+  text-align: center;
+  font-size: 25px;
+}
+
+#register-button {
+  margin: 20px 20px 20px 4px;
+}
+
+button {
+  padding: 5px;
+  color: white;
+  border-radius: 4px;
+  background-color: #dfc277;
+}
+
+#content tbody {
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+}
+
+#content > tbody > td.checkbox {
+  text-align: center;
+} 
+
+#content form label {
+  padding: 10px;
 }

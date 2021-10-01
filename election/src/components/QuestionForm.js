@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 import {useForm} from '../hooks/useForm';
 
-export const QuestionForm = ({onSubmitQuestion}) => {
+export const QuestionForm = ({onSubmitQuestion, onSetErrorMsg: setErrorMsg}) => {
   const [ 
     questionForm,
     change,
     resetQuestionForm,
-    setForm,
   ] = useForm({
     question: '',
-    errorMsg: '',
   });
 
   const addQuestion = () => {
@@ -19,7 +17,7 @@ export const QuestionForm = ({onSubmitQuestion}) => {
       onSubmitQuestion(questionForm.question);
       resetQuestionForm();
     } else {
-      setForm({...questionForm, errorMsg: 'Please enter text into the question field'});
+      setErrorMsg('Please enter question text');
     }
   };
 
@@ -36,7 +34,6 @@ export const QuestionForm = ({onSubmitQuestion}) => {
         />
       </label>
       <button type="button" onClick={addQuestion}>Add Question</button>
-      {questionForm.errorMsg && <div>Error: {questionForm.errorMsg}</div>}
     </>
   );
 };

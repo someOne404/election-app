@@ -4,34 +4,35 @@ import PropTypes from 'prop-types';
 import {useForm} from '../hooks/useForm';
 import {QuestionForm} from './QuestionForm';
 
-export const ElectionForm = ({buttonText, onSubmitElection}) => {
+export const ElectionForm = ({
+  buttonText, questions, errorMsg,
+  onSubmitElection,
+  onAppendQuestion: appendQuestion,
+  onSetErrorMsg: setErrorMsg,
+}) => {
   const [ 
     electionForm, // state data 
     change,
     resetElectionForm,
-    setForm,
   ] = useForm({
-    name: '', 
-    questions: [],
-    voterIds: [],
-    errorMsg: '',
+    name: '',
   });
 
   const submitElection = () => {
-    if (electionForm.name && electionForm.questions.length > 0) {
-      onSubmitElection({ ...electionForm });
+    if (electionForm.name) {
+      if (questions.length === 0) {
+        setErrorMsg('Please enter at least one question');
+        return;
+      } 
+      onSubmitElection({ ...electionForm, questions, voterIds: []});
       resetElectionForm();
     } else {
-      setForm({...electionForm, errorMsg: 'Please enter election name and questions'});
+      setErrorMsg('Please enter election name');
     }
   };
 
   const addQuestion = (questionText) => {
-    const {questions} = electionForm; 
-    setForm({
-      ...electionForm,
-      questions: [...questions, {question: questionText, id: questions.length + 1, yesCount: 0}],
-    });
+    appendQuestion({question: questionText, id: questions.length + 1, yesCount: 0});
   };
 
   return (
@@ -44,13 +45,14 @@ export const ElectionForm = ({buttonText, onSubmitElection}) => {
         <div>
           Questions:
           <ol>
-            {electionForm.questions.map(q => <li key={q.id}>{q.question}</li>)}
+            {questions.map(q => <li key={q.id}>{q.question}</li>)}
           </ol>
         </div>
-        <QuestionForm onSubmitQuestion={addQuestion}/>
-        <button type="button" onClick={submitElection}>{buttonText}</button>
+        <QuestionForm onSubmitQuestion={addQuestion} onSetErrorMsg={setErrorMsg}/>
+        <div><button type="button" onClick={submitElection}>{buttonText}</button></div>
+        
       </form>
-      {electionForm.errorMsg && <div>Error: {electionForm.errorMsg}</div>}
+      {errorMsg && <div>Error: {errorMsg}</div>}
     </>
   );
 };
