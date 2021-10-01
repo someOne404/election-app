@@ -14,7 +14,7 @@ import logo from './images/intuit-jaguar.png';
 
 export function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <header id="page-header">
         <h1>Election App</h1>
         <div><img id="logo" src={logo}></img></div>
@@ -47,8 +47,8 @@ export function App() {
           </Route>
         </Switch>
       </main>
-      <footer id="page-footer">
-        <small>&copy; Intuit Jaguars, Inc.</small>
+      <footer id="page-footer" className="fixed-bottom">
+        <small>&copy; Intuit Jaguars</small>
       </footer>
     </div>
   );
