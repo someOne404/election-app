@@ -23,6 +23,7 @@ export const VoterEditRow = ({voter, onSaveVoter, onCancelVoter: cancelVoter}) =
 
       return (      
         <tr>
+        <td></td>
         <td>{voter.id}</td>
         <td><label htmlFor="firstname-input">First Name</label>
               <input

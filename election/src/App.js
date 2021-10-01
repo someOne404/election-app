@@ -47,11 +47,11 @@ export function App() {
           </Route>
         </Switch>
       </main>
-      <aside id="sidebar">
+      {/* <aside id="sidebar">
         Sidebar
-      </aside>
+      </aside> */}
       <footer id="page-footer">
-        <small>Footer</small>
+        <small>&copy; Intuit Jaguars, Inc.</small>
       </footer>
     </div>
   );
