@@ -116,3 +116,7 @@ button {
 #content form label {
   padding: 10px;
 }
+
+strong {
+  font-weight: bold;
+}
