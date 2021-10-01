@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { VoterForm } from "./VoterForm";
 import { VoterViewRow } from "./VoterViewRow";
 import { VoterEditRow } from "./VoterEditRow";
@@ -52,15 +53,12 @@ export const VoterTable = ({
 
     sortArrow('id')
 
+    const [ checkedVoterIds, setCheckedVoterIds ] = useState([]);
+
     const SortHeaderCol = sortHeaderColWrapper(sortVoters, sortArrowWrapper(col, dir));
 
     const votersToDelete = () => {
-        const checkboxes = document.querySelectorAll('input[name="delete-voter"]:checked');
-        let selectedVoterIds = [];
-        checkboxes.forEach((checkbox) => {
-            selectedVoterIds.push(checkbox.value);
-        })
-        return selectedVoterIds;
+        return checkedVoterIds;
     };
 
     return (
@@ -82,7 +80,7 @@ export const VoterTable = ({
                 ? <VoterEditRow key={voter.id} voter={voter}
                     onSaveVoter={onSaveVoter} onCancelVoter={onCancelVoter} />
                 : <VoterViewRow key={voter.id} voter={voter} 
-                onDeleteVoter={deleteVoter} onEditVoter={onEditVoter} />)}
+                onDeleteVoter={deleteVoter} onEditVoter={onEditVoter} setCheckedVoterIds={setCheckedVoterIds} checkedVoterIds={checkedVoterIds}/>)}
             </tbody>
         </table>
         </>

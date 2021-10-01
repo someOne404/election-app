@@ -10,7 +10,12 @@ import {
   errorMessageReducer,
 } from '../reducers/voterToolReducers';
 
-import { electionsReducer, viewElectionIdReducer } from "../reducers/electionToolReducers";
+import { 
+  electionsReducer, 
+  viewElectionIdReducer,
+  questionsReducer,
+  errorMsgReducer,
+} from "../reducers/electionToolReducers";
 
 let composeEnhancers = composeWithDevTools({
   name: 'Voter Tool'
@@ -31,6 +36,8 @@ export const voterToolStore = createStore(
     errorMessage: errorMessageReducer,
     elections: electionsReducer,
     viewElectionId: viewElectionIdReducer,
+    questions: questionsReducer,
+    errorMsg: errorMsgReducer,
   }),
   middleware,
 );
