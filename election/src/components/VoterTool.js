@@ -1,5 +1,4 @@
 import { ToolHeader } from "./ToolHeader";
-import { ToolFooter } from "./ToolFooter";
 
 import { VoterTableContainer } from "../containers/VoterTableContainer";
 
@@ -9,7 +8,6 @@ export const VoterTool = () => {
         <>
             <ToolHeader headerText="Voter Tool" />
             <VoterTableContainer />
-            <ToolFooter companyName="A Cool Company, Inc." />
         </>
         
     );

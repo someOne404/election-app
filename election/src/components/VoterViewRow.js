@@ -1,12 +1,22 @@
 import PropTypes from 'prop-types';
-
 import { voterPropType } from '../prop-types/voters';
 
-export const VoterViewRow = ({ voter, onEditVoter: editVoter, onDeleteVoter: deleteVoter}) => {
+export const VoterViewRow = ({ voter, checkedVoterIds,
+    onEditVoter: editVoter, onDeleteVoter: deleteVoter, setCheckedVoterIds,
+}) => {
 
+    const updateCheck = (e) => {
+        console.log(e.target.checked);
+        if(e.target.checked) {
+            setCheckedVoterIds([...checkedVoterIds, voter.id]);
+        } else {
+            setCheckedVoterIds(checkedVoterIds.filter(id => id !== voter.id));
+        }
+    }
     return (
     <tr>
-        <td><input type="checkbox" value={voter.id} name="delete-voter"/></td>
+        <td><input type="checkbox" value={voter.id} 
+            name="delete-voter" onChange={updateCheck}/></td>
         <td>{voter.id}</td>
         <td>{voter.firstName}</td>
         <td>{voter.lastName}</td>
