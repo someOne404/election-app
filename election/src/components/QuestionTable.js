@@ -13,7 +13,8 @@ export const QuestionTable = ({
           <tr>
             <th>Id</th>
             <th>Question</th>
-            <th>YesCount</th>
+            <th>YesCount</th> 
+            <th>NoCount</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@ export const QuestionTable = ({
             <td>{id}</td>
             <td>{question}</td>
             <td>{yesCount}</td>
+            <td>{election.voterIds.length - yesCount}</td>
           </tr>)}
         </tbody>
       </table>

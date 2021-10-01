@@ -6,16 +6,15 @@ export const VoterViewRow = ({ voter, checkedVoterIds,
 }) => {
 
     const updateCheck = (e) => {
-        console.log(e.target.checked);
         if(e.target.checked) {
-            setCheckedVoterIds([...checkedVoterIds, voter.id]);
+            setCheckedVoterIds([...checkedVoterIds, voter.id ]);
         } else {
             setCheckedVoterIds(checkedVoterIds.filter(id => id !== voter.id));
         }
     }
     return (
     <tr>
-        <td className="checkbox"><input type="checkbox" value={voter.id} 
+        <td className="checkbox"><input type="checkbox" checked={checkedVoterIds.includes(voter.id)} 
             name="delete-voter" onChange={updateCheck}/></td>
         <td>{voter.id}</td>
         <td>{voter.firstName}</td>

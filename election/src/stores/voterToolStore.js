@@ -41,3 +41,12 @@ export const voterToolStore = createStore(
   }),
   middleware,
 );
+
+// export const voterAppStore = createStore(
+//   combineReducers({
+//     voterTool: voterToolReducer,
+//     electionTool: electionToolReducer,
+//     ballotTool: ballotToolReducer,
+//   }),
+//   middleware,
+// );
