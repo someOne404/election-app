@@ -112,13 +112,14 @@ export const refreshVoters = () => {
 
 export const removeSelectedVoters = (voterIds) => {
 
-    return dispatch => {
+    return async dispatch => {
         dispatch(createRemoveSelectedVotersRequestAction(voterIds));
-        voterIds.map((id) => {
-            dispatch(removeVoter(id));
-        });
+        await Promise.all(voterIds.map((voterId) => {
+          return fetch(`http://localhost:3060/voters/${encodeURIComponent(voterId)}`, {method: 'DELETE'});
+        }));
+
         dispatch(createRemoveSelectedVotersDoneAction());
-        dispatch(refreshVoters());       
+        await dispatch(refreshVoters());       
     };
   
 };
