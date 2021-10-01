@@ -66,7 +66,7 @@ export const VoterTable = ({
     return (
         <>
         {errorMessage && <span>{errorMessage}</span>}
-        <button type="button" onClick={toggleForm}>Register Voter</button>
+        <button id="register-button" type="button" onClick={toggleForm}>Register Voter</button>
         {showForm && <VoterForm onSubmitVoter={onSubmitVoter}/>}
         <table>
             <thead key='voter-thead'>
